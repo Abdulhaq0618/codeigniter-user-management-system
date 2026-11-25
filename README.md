@@ -1,69 +1,141 @@
-# CodeIgniter 4 Application Starter
+# CodeIgniter 4 - User Management System
 
-## What is CodeIgniter?
+A simple and responsive User Management System developed using **CodeIgniter 4, PHP, MySQL, and Bootstrap 5**.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+This project allows users to manage user records through a clean dashboard with Create, Read, Update, and Delete (CRUD) functionality.
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+## Features
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+- View all registered users.
+- Add new users.
+- Edit existing user information.
+- Delete users with confirmation.
+- Form validation for required fields.
+- Email format and duplicate email validation.
+- Phone number validation (11 digits).
+- Responsive Bootstrap 5 interface.
+- MySQL database integration.
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+## Technologies Used
 
-## Installation & updates
+| Technology | Purpose |
+|---|---|
+| PHP | Backend programming |
+| CodeIgniter 4 | PHP framework |
+| MySQL | Database |
+| Bootstrap 5 | Frontend styling |
+| HTML5 | Page structure |
+| CSS3 | Styling |
+| JavaScript | Interactive features |
+| Git & GitHub | Version control |
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+## Project Structure
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+```text
+UserManagement/
+├── app/
+│   ├── Controllers/
+│   │   └── User.php
+│   ├── Models/
+│   │   └── UserModel.php
+│   ├── Views/
+│   │   ├── users.php
+│   │   ├── addUser.php
+│   │   └── editUser.php
+│   └── Config/
+│       └── Routes.php
+├── public/
+├── tests/
+├── writable/
+├── .gitignore
+├── composer.json
+└── README.md
+```
 
-## Setup
+## Installation and Setup
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+### 1. Clone the repository
 
-## Important Change with index.php
+```bash
+git clone https://github.com/Abdulhaq0618/codeigniter-user-management-system.git
+```
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+### 2. Open the project
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+Move the project folder into your XAMPP `htdocs` directory.
 
-**Please** read the user guide for a better explanation of how CI4 works!
+### 3. Install dependencies
 
-## Repository Management
+Open a terminal inside the project folder and run:
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+```bash
+composer install
+```
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+### 4. Configure the environment
 
-## Server Requirements
+Copy the `env` example file to `.env` and configure your database settings.
 
-PHP version 8.2 or higher is required, with the following extensions installed:
+```ini
+app.baseURL = 'http://localhost:8080/'
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+database.default.hostname = localhost
+database.default.database = user_management
+database.default.username = root
+database.default.password =
+database.default.DBDriver = MySQLi
+database.default.port = 3306
+```
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - The end of life date for PHP 8.1 was December 31, 2025.
-> - If you are still using below PHP 8.2, you should upgrade immediately.
-> - The end of life date for PHP 8.2 will be December 31, 2026.
+### 5. Create the database
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+Create a MySQL database named:
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+```sql
+CREATE DATABASE user_management;
+```
+
+Import the SQL file from the project's database folder (provided separately in this repository).
+
+### 6. Run the application
+
+Start Apache and MySQL from XAMPP.
+
+From the project directory, run:
+
+```bash
+php spark serve
+```
+
+If PHP is not configured in your Windows PATH, use:
+
+```powershell
+C:\xampp\php\php.exe spark serve
+```
+
+### 7. Open the application
+
+Visit:
+
+http://localhost:8080/users
+
+## Database Structure
+
+The application uses a `users` table with the following fields:
+
+| Column | Type | Description |
+|---|---|---|
+| id | INT | Primary key, auto increment |
+| name | VARCHAR(100) | User name |
+| email | VARCHAR(100) | Unique email address |
+| phone | VARCHAR(11) | Phone number |
+
+## Author
+
+**Abdulhaq0618**
+
+GitHub: https://github.com/Abdulhaq0618
+
+## License
+
+This project is available under the license included in this repository.
